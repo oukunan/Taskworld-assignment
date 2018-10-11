@@ -6,11 +6,11 @@ class Layout extends Component {
     return (
       <div>
         <Navbar />
-        <div>
-          <div>
+        <div className="container-layout">
+          <div className="sub-layout menu-layout">
             <Menu />
           </div>
-          <div>{this.props.children}</div>
+          <div className="sub-layout child-layout">{this.props.children}</div>
         </div>
       </div>
     );

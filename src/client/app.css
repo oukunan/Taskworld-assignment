@@ -2,7 +2,6 @@ body {
   margin: 0;
 }
 .navbar {
-  /* width: 100%; */
   border-bottom: 1px solid black;
   display: flex;
   flex-direction: row;
@@ -10,6 +9,25 @@ body {
   justify-content: center;
 }
 
-.navbar li{
+.navbar li {
   display: inline;
+}
+
+.container-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.sub-layout {
+  border: 1px solid black;
+  margin: 15px;
+}
+
+.menu-layout {
+  width: 30%;
+}
+.child-layout {
+  width: 60%;
 }
