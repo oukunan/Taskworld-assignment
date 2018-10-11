@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import './app.css';
+import { Route, Switch } from 'react-router-dom';
 
-export default class App extends Component {
+import './app.css';
+import Layout from './hoc/Layout';
+
+class App extends Component {
   render() {
-    return <div>Hello world</div>;
+    return (
+      <Layout>
+        
+      </Layout>
+    );
   }
 }
+
+export default App;
