@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Input = props => {
+const input = props => {
   let inputElement = null;
 
   switch (props.elementType) {
@@ -30,4 +30,4 @@ const Input = props => {
   );
 };
 
-export default Input;
+export default input;
