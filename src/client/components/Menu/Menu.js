@@ -6,8 +6,8 @@ const menu = props => {
   return (
     <div className="menu-layout">
       <ul>
-        <MenuItem link="/edt" title="Edit profile" />
-        <MenuItem link="/preference" title="Preference" />
+        <MenuItem link="/" title="Preference" />
+        <MenuItem link="/profile" title="Edit profile" />
       </ul>
     </div>
   );

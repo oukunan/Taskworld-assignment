@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 const menuItem = props => (
   <li>
-    <a href={props.link}>{props.title}</a>
+    <NavLink to={props.link}>{props.title}</NavLink>
   </li>
 );
 
