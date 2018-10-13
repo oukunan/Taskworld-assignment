@@ -29,16 +29,22 @@ app.get('/user', (request, response) => {
   });
 });
 app.post('/signup', (req, res) => {
-  console.log(req.body);
-  const user = new User(req.body);
-  user
-    .save()
-    .then(item => {
-      res.status(200).send(user.email + ' ' + user._id);
-    })
-    .catch(err => {
-      res.status(400).send('unable to save to database');
-    });
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (err) throw err;
+    if (user) {
+      res.status(401).json({ message: 'Email already used.' });
+    } else {
+      const user = new User(req.body);
+      user
+        .save()
+        .then(item => {
+          res.status(200).send(user.email + ' ' + user._id);
+        })
+        .catch(err => {
+          res.status(400).send('unable to save to database');
+        });
+    }
+  });
 });
 
 app.post('/login', (req, res) => {
