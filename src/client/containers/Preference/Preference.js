@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import axios from 'axios';
+
 class Preference extends Component {
   state = {
     language: 'English',
@@ -21,7 +23,14 @@ class Preference extends Component {
 
   savePreferenceHandler = e => {
     e.preventDefault();
-    console.log(this.state);
+    axios
+      .post('http://localhost:8080/addPreference', this.state)
+      .then(res => {
+        console.log(res.data);
+      })
+      .then(e => {
+        console.log(e);
+      });
   };
 
   render() {

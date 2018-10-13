@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
-var { Preference } = require('./models/Preference');
+const { Preference } = require('./models/Preference');
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -12,7 +14,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/taskworld');
 
-// app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
   res.send('Hello World');
