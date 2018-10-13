@@ -6,19 +6,31 @@ import Button from '../../components/UI/Button/Button';
 class Signup extends Component {
   state = {
     email: '',
-    password: ''
+    password: '',
+    isLogin: false
   };
 
-  signupHandler = e => {
+  submitHandler = e => {
     e.preventDefault();
-    axios
-      .post('http://localhost:8080/signup', this.state)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => {
-        console.log(err.response);
-      });
+    if (this.state.isLogin) {
+      axios
+        .post('http://localhost:8080/login', this.state)
+        .then(res => {
+          this.props.history.push('/preference');
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
+    } else {
+      axios
+        .post('http://localhost:8080/signup', this.state)
+        .then(res => {
+          this.setState({ isLogin: true });
+        })
+        .catch(err => {
+          console.log(err.response);
+        });
+    }
   };
 
   handleInput = e => {
@@ -29,15 +41,37 @@ class Signup extends Component {
     });
   };
 
+  authToggle = () => {
+    this.setState(prevState => ({
+      isLogin: !prevState.isLogin
+    }));
+  };
+
   render() {
+    console.log(this.state);
+    const { isLogin } = this.state;
     return (
       <div>
-        <h3>Register</h3>
-        <form onSubmit={this.signupHandler}>
-          <input type="email" name="email" onChange={this.handleInput} />
-          <input type="password" name="password" onChange={this.handleInput} />
-          <Button>Login</Button>
+        <h3>{isLogin ? 'Login' : 'Signup'}</h3>
+        <form onSubmit={this.submitHandler}>
+          <input
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleInput}
+          />
+          <input
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleInput}
+          />
+          <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
         </form>
+
+        <Button clicked={this.authToggle}>
+          Change to {isLogin ? 'Sing up' : 'Login'}.
+        </Button>
       </div>
     );
   }
