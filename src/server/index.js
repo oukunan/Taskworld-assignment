@@ -48,30 +48,25 @@ app.post('/signup', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  User.findOne(
-    {
-      email: req.body.email
-    },
-    (err, user) => {
-      if (err) throw err;
-      if (!user) {
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (err) throw err;
+    if (!user) {
+      res
+        .status(401)
+        .json({ message: 'Authentication failed. User not found.' });
+    } else if (user) {
+      if (user.password !== req.body.password) {
         res
           .status(401)
-          .json({ message: 'Authentication failed.   User not found.' });
-      } else if (user) {
-        if (user.password !== req.body.password) {
-          res
-            .status(401)
-            .json({ message: 'Authentication failed. Wrong password.' });
-        } else {
-          let sess = req.session;
-          sess.email = user.email;
-          sess._id = user._id;
-          res.status(200).send(user.email + ' ' + user._id);
-        }
+          .json({ message: 'Authentication failed. Wrong password.' });
+      } else {
+        let sess = req.session;
+        sess.email = user.email;
+        sess._id = user._id;
+        res.status(200).send(user.email + ' ' + user._id);
       }
     }
-  );
+  });
 });
 
 app.get('/session', (req, res) => {
