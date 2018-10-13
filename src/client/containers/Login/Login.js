@@ -12,7 +12,7 @@ class Login extends Component {
   loginHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:8080/user', this.state)
+      .post('http://localhost:8080/signup', this.state)
       .then(res => {
         console.log(res.data);
       })
