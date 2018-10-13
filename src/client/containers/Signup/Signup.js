@@ -3,13 +3,13 @@ import axios from 'axios';
 
 import Button from '../../components/UI/Button/Button';
 
-class Login extends Component {
+class Signup extends Component {
   state = {
     email: '',
     password: ''
   };
 
-  loginHandler = e => {
+  signupHandler = e => {
     e.preventDefault();
     axios
       .post('http://localhost:8080/signup', this.state)
@@ -17,7 +17,7 @@ class Login extends Component {
         console.log(res.data);
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
       });
   };
 
@@ -32,7 +32,8 @@ class Login extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.loginHandler}>
+        <h3>Register</h3>
+        <form onSubmit={this.signupHandler}>
           <input type="email" name="email" onChange={this.handleInput} />
           <input type="password" name="password" onChange={this.handleInput} />
           <Button>Login</Button>
@@ -42,4 +43,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;

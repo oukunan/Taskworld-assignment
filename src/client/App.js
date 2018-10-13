@@ -5,7 +5,7 @@ import './app.css';
 import Layout from './hoc/Layout';
 import Preference from './containers/Preference/Preference';
 import Profile from './containers/Profile/Profile';
-import Login from './containers/Login/Login';
+import Signup from './containers/Signup/Signup';
 class App extends Component {
   render() {
     return (
@@ -13,7 +13,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/preference" component={Preference} />
-          <Route exact path="/" component={Login} />
+          <Route exact path="/" component={Signup} />
         </Switch>
       </Layout>
     );

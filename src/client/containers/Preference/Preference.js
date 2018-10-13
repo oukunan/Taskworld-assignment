@@ -28,7 +28,7 @@ class Preference extends Component {
       .then(res => {
         console.log(res.data);
       })
-      .then(e => {
+      .catch(e => {
         console.log(e);
       });
   };
