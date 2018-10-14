@@ -71,8 +71,7 @@ app.post('/login', (req, res) => {
 
 app.get('/session', (req, res) => {
   let sess = req.session;
-  console.log(sess);
-  res.status(200).send('email = ' + sess.email + '  ' + '_id = ' + sess._id);
+  res.status(200).json({ email: sess.email, id: sess._id });
 });
 
 app.post('/addPreference', (req, res) => {
