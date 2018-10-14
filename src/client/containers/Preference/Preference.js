@@ -25,11 +25,25 @@ class Preference extends Component {
   savePreferenceHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:8080/addPreference', {
+      .post('http://localhost:8080/preference', {
         ...this.state,
         user: {
           uid: this.props.uid
         }
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  };
+
+  deleteHandler = e => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:8080/preference/`, {
+        data: { uid: this.props.uid }
       })
       .then(res => {
         console.log(res.data);
@@ -129,7 +143,7 @@ class Preference extends Component {
 
             <div>
               <label>Recently viewed</label>
-              <Button>Delete all items</Button>
+              <Button clicked={this.deleteHandler}>Delete all items</Button>
             </div>
           </div>
           <div>

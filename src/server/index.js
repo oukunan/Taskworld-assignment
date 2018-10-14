@@ -74,9 +74,22 @@ app.get('/session', (req, res) => {
   res.status(200).json({ email: sess.email, id: sess._id });
 });
 
-app.post('/addPreference', (req, res) => {
+app.post('/preference', (req, res) => {
   Preference.update(req.body.user, req.body, { upsert: true }, (err, user) => {
     if (err) throw err;
+  });
+});
+
+app.delete('/preference', (req, res) => {
+  const id = req.body.uid;
+
+  Preference.findOneAndRemove({
+    uid: id
+  }).then(item => {
+    if (!item) {
+      return res.status(404).send();
+    }
+    res.send({ item });
   });
 });
 
