@@ -6,13 +6,39 @@ import Button from '../../components/UI/Button/Button';
 
 class Preference extends Component {
   state = {
-    language: 'English',
-    timezone: '(+00:00)UTC',
-    currency: 'USD',
-    visibility: 'Everyone',
-    message: 'Everyone',
-    category: 'Enable'
+    language: '',
+    timezone: '',
+    currency: '',
+    visibility: '',
+    message: '',
+    category: ''
   };
+
+  componentDidMount() {
+    axios
+      .get(`http://localhost:8080/preference/${this.props.uid}`)
+      .then(res => {
+        const {
+          language,
+          timezone,
+          currency,
+          visibility,
+          message,
+          category
+        } = res.data.item;
+        this.setState({
+          language,
+          timezone,
+          currency,
+          visibility,
+          message,
+          category
+        });
+      })
+      .catch(e => {
+        console.log(e.response);
+      });
+  }
 
   inputChangedHandler = e => {
     let name = e.target.name;

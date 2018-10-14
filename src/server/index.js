@@ -74,6 +74,22 @@ app.get('/session', (req, res) => {
   res.status(200).json({ email: sess.email, id: sess._id });
 });
 
+app.get('/preference/:id', (req, res) => {
+  const id = req.params.id;
+  Preference.findOne({
+    uid: id
+  })
+    .then(item => {
+      if (!item) {
+        return res.status(404).send();
+      }
+      res.send({ item });
+    })
+    .catch(e => {
+      res.status(400).send();
+    });
+});
+
 app.post('/preference', (req, res) => {
   Preference.update(req.body.user, req.body, { upsert: true }, (err, user) => {
     if (err) throw err;
