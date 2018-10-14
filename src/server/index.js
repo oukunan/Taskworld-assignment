@@ -63,7 +63,7 @@ app.post('/login', (req, res) => {
         let sess = req.session;
         sess.email = user.email;
         sess._id = user._id;
-        res.status(200).send(user.email + ' ' + user._id);
+        res.status(200).json({ email: user.email, id: user._id });
       }
     }
   });
@@ -75,15 +75,9 @@ app.get('/session', (req, res) => {
 });
 
 app.post('/addPreference', (req, res) => {
-  const data = new Preference(req.body);
-  data
-    .save()
-    .then(item => {
-      console.log('item saved to database');
-    })
-    .catch(err => {
-      res.status(400).send('unable to save to database');
-    });
+  Preference.update(req.body.user, req.body, { upsert: true }, (err, user) => {
+    if (err) throw err;
+  });
 });
 
 app.listen(8080, () => console.log('Listening on port 8080!'));
