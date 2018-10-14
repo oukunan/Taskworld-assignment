@@ -6,7 +6,8 @@ const preferenceSchema = new mongoose.Schema({
   currency: String,
   visibility: String,
   message: String,
-  category: String
+  category: String,
+  uid: String
 });
 
 const Preference = mongoose.model('Preference', preferenceSchema);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import axios from 'axios';
+
+import { AuthConsumer } from '../../context/AuthContext';
+import Button from '../../components/UI/Button/Button';
 
 class Preference extends Component {
   state = {
@@ -24,7 +25,12 @@ class Preference extends Component {
   savePreferenceHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:8080/addPreference', this.state)
+      .post('http://localhost:8080/addPreference', {
+        ...this.state,
+        user: {
+          uid: this.props.uid
+        }
+      })
       .then(res => {
         console.log(res.data);
       })
@@ -155,4 +161,10 @@ class Preference extends Component {
   }
 }
 
-export default Preference;
+export default props => (
+  <AuthConsumer>
+    {({ uid }) => {
+      return <Preference {...props} uid={uid} />;
+    }}
+  </AuthConsumer>
+);

@@ -17,7 +17,7 @@ class Signup extends Component {
       axios
         .post('http://localhost:8080/login', this.state)
         .then(res => {
-          this.props.login();
+          this.props.login(res.data.id);
           this.props.history.push('/preference');
         })
         .catch(err => {
