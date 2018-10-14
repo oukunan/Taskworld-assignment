@@ -6,13 +6,14 @@ import Layout from './hoc/Layout';
 import Preference from './containers/Preference/Preference';
 import Profile from './containers/Profile/Profile';
 import Signup from './containers/Signup/Signup';
+import ProtectedRoute from './context/ProtectedRoute';
 class App extends Component {
   render() {
     return (
       <Layout>
         <Switch>
-          <Route path="/profile" component={Profile} />
-          <Route path="/preference" component={Preference} />
+          <ProtectedRoute path="/profile" component={Profile} />
+          <ProtectedRoute path="/preference" component={Preference} />
           <Route exact path="/" component={Signup} />
         </Switch>
       </Layout>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Button from '../../components/UI/Button/Button';
+import { AuthConsumer } from '../../context/AuthContext';
 
 class Signup extends Component {
   state = {
@@ -16,6 +17,7 @@ class Signup extends Component {
       axios
         .post('http://localhost:8080/login', this.state)
         .then(res => {
+          this.props.login();
           this.props.history.push('/preference');
         })
         .catch(err => {
@@ -48,7 +50,6 @@ class Signup extends Component {
   };
 
   render() {
-    console.log(this.state);
     const { isLogin } = this.state;
     return (
       <div>
@@ -77,4 +78,10 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default props => (
+  <AuthConsumer>
+    {({ isAuth, login }) => {
+      return <Signup {...props} isAuth={isAuth} login={login} />;
+    }}
+  </AuthConsumer>
+);
