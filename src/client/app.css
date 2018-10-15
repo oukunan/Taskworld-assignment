@@ -52,11 +52,38 @@ body {
   color: black;
 }
 
-.preference {
+.signup button {
+  margin-top: 15px;
+}
+
+.preference,
+.signup {
   padding: 15px 30px;
   background-color: white;
   border-radius: 5px;
 }
+.input-signup {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.input-signup input {
+  height: 30px;
+  margin-top: 5px;
+  border: 1px solid #dce3ef;
+}
+.input-signup input:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-signup input,
+.input-signup input::placeholder {
+  text-indent: 5px;
+  font-size: 14px;
+}
+
 .preference h3 {
   margin: 0px;
 }
@@ -179,7 +206,7 @@ select {
 #search,
 #search::placeholder {
   text-indent: 5px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn {
@@ -207,4 +234,10 @@ select {
 .is-active {
   font-weight: bold;
   background-color: #eaecef;
+}
+
+.toggleLogin {
+  margin-top: 15px;
+  font-size: 12px;
+  cursor: pointer;
 }

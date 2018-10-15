@@ -52,27 +52,32 @@ class Signup extends Component {
   render() {
     const { isLogin } = this.state;
     return (
-      <div>
-        <h3>{isLogin ? 'Login' : 'Signup'}</h3>
+      <div className="signup">
+        <h3>{isLogin ? 'Login' : 'Sign up'}</h3>
         <form onSubmit={this.submitHandler}>
-          <input
-            type="email"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInput}
-          />
-          <input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInput}
-          />
+          <div className="input-signup">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={this.state.email}
+              onChange={this.handleInput}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleInput}
+            />
+          </div>
+
           <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
         </form>
 
-        <Button clicked={this.authToggle}>
+        <div className="toggleLogin" onClick={this.authToggle}>
           Change to {isLogin ? 'Sing up' : 'Login'}.
-        </Button>
+        </div>
       </div>
     );
   }
