@@ -6,12 +6,12 @@ import Button from '../../components/UI/Button/Button';
 
 class Preference extends Component {
   state = {
-    language: '',
-    timezone: '',
-    currency: '',
-    visibility: '',
-    message: '',
-    category: ''
+    language: 'English',
+    timezone: '+00:00)UTC',
+    currency: 'USD',
+    visibility: 'Everyone',
+    message: 'Everyone',
+    category: 'Enable'
   };
 
   componentDidMount() {
