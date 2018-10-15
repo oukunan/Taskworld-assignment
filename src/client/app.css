@@ -1,15 +1,20 @@
-html,
-body,
-div {
+body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
+  background-color: #dce3ef;
 }
 .navbar {
-  border-bottom: 1px solid black;
+  background-color: white;
+  height: 60px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+
+.navbar-menu {
+  flex: 1;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .navbar li {
@@ -30,27 +35,27 @@ div {
   list-style: none;
   padding: 0px;
   margin: 0px;
-  border: 1px solid black;
-}
-
-.sub-layout .menu ul li {
-  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
 }
 
 .sub-layout .menu ul li:hover {
-  background-color: #e2e2e2;
+  background-color: #eaecef;
 }
 .sub-layout .menu ul li a {
   text-decoration: none;
   font-size: 14px;
+  display: flex;
+  padding: 10px 30px;
 }
 .sub-layout .menu ul li a:visited {
   color: black;
 }
 
 .preference {
-  padding: 10px;
-  border: 1px solid black;
+  padding: 15px 30px;
+  background-color: white;
+  border-radius: 5px;
 }
 .preference h3 {
   margin: 0px;
@@ -88,5 +93,118 @@ label {
 
 select {
   width: 100%;
+  height: 30px;
+}
+.dropbtn {
+  border: 0px;
+  font-size: 14px;
+  cursor: pointer;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+  margin-right: 50px;
+  cursor: pointer;
+}
+
+.dropdown-content div {
+  color: black;
+  padding: 10px 14px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+}
+
+.dropdown-content div:hover {
+  background-color: #e8e8e8;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn {
+  margin-right: 50px;
+}
+
+.dropbtn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+#arrow {
+  border: solid black;
+  border-width: 0 1px 1px 0;
+  display: inline-block;
+  padding: 3px;
+  position: relative;
+  top: -3px;
+  margin-left: 3px;
+}
+
+.down {
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.logo li a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.logo li a:visited {
+  color: black;
+}
+
+#search {
+  border: 1px solid #dce3ef;
+  height: 30px;
+}
+
+#search:focus {
+  outline: none;
+  box-shadow: 1px 1px #dce3ef;
+}
+#search,
+#search::placeholder {
+  text-indent: 5px;
+  font-size: 12px;
+}
+
+.btn {
+  border: 0px;
+  padding: 10px 30px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #96b8f2;
+}
+
+.btn:hover {
+  background-color: #678dce;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.btn:active {
+  transform: scale(0.9);
+}
+
+.is-active {
+  font-weight: bold;
+  background-color: #eaecef;
+}
