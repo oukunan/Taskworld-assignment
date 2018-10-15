@@ -68,9 +68,7 @@ class Preference extends Component {
   deleteHandler = e => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:8080/preference/`, {
-        data: { uid: this.props.uid }
-      })
+      .delete(`http://localhost:8080/preference/${this.props.uid}`)
       .then(res => {
         console.log(res.data);
       })
@@ -81,119 +79,169 @@ class Preference extends Component {
 
   render() {
     return (
-      <div>
+      <div className="preference">
         <form onSubmit={this.savePreferenceHandler}>
-          <div>
-            <h3>Edit preference</h3>
-            <h5>Localization</h5>
-            <label>Language</label>
-            <select
-              onChange={this.inputChangedHandler}
-              name="language"
-              value={this.state.language}
-            >
-              <option value="English">English</option>
-              <option value="Thai">Thai</option>
-            </select>
+          <h3>Edit preference</h3>
 
-            <label>Time zone</label>
-            <select
-              onChange={this.inputChangedHandler}
-              name="timezone"
-              value={this.state.timezone}
-            >
-              <option value="(+00:00)UTC">(+00:00)UTC</option>
-              <option value="(+01:00)UTC">(+01:00)UTC</option>
-            </select>
-
-            <label>Currency</label>
-            <select
-              onChange={this.inputChangedHandler}
-              name="currency"
-              value={this.state.currency}
-            >
-              <option value="USD">USD</option>
-              <option value="THB">THB</option>
-            </select>
-          </div>
-          <div>
-            <h5>Privacy</h5>
-            <div>
-              <label>Profile visibility</label>
-              <input
-                type="radio"
-                name="visibility"
-                value="Everyone"
-                checked={this.state.visibility === 'Everyone'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              Everyone
-              <input
-                type="radio"
-                name="visibility"
-                value="Private"
-                checked={this.state.visibility === 'Private'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              Private
+          <div className="desc-box">
+            <div className="desc-topic">
+              <div>Localization</div>
             </div>
-            <br />
             <div>
-              <label>Messages</label>
-              <input
-                type="radio"
-                name="message"
-                value="Everyone"
-                checked={this.state.message === 'Everyone'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              Everyone
-              <input
-                type="radio"
-                name="message"
-                value="People you follow"
-                checked={this.state.message === 'People you follow'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              people you follow
-              <input
-                type="radio"
-                name="message"
-                value="No one"
-                checked={this.state.message === 'No one'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              No one
-            </div>
-            <br />
+              <div className="input-layout">
+                <label>Language</label>
+                <span className="desc">
+                  Interesd in helping translate Fancy? Let us know
+                </span>
+                <div>
+                  <select
+                    onChange={this.inputChangedHandler}
+                    name="language"
+                    value={this.state.language}
+                  >
+                    <option value="English">English</option>
+                    <option value="Thai">Thai</option>
+                  </select>
+                </div>
+              </div>
 
-            <div>
-              <label>Recently viewed</label>
-              <Button clicked={this.deleteHandler}>Delete all items</Button>
+              <div className="input-layout">
+                <label>Time zone</label>
+                <div>
+                  <select
+                    onChange={this.inputChangedHandler}
+                    name="timezone"
+                    value={this.state.timezone}
+                  >
+                    <option value="(+00:00)UTC">(+00:00)UTC</option>
+                    <option value="(+01:00)UTC">(+01:00)UTC</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="input-layout">
+                <label>Currency</label>
+                <div>
+                  <select
+                    onChange={this.inputChangedHandler}
+                    name="currency"
+                    value={this.state.currency}
+                  >
+                    <option value="USD">USD</option>
+                    <option value="THB">THB</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <h5>Content</h5>
+
+          <div className="desc-box">
+            <div className="desc-topic">
+              <div>Privacy</div>
+            </div>
             <div>
-              <label>Category lists</label>
-              <input
-                type="radio"
-                name="category"
-                value="Enable"
-                checked={this.state.category === 'Enable'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              Enable
-              <input
-                type="radio"
-                name="category"
-                value="Disable"
-                checked={this.state.category === 'Disable'}
-                onChange={this.inputChangedHandler}
-              />{' '}
-              Disable
+              <div className="input-layout">
+                <label>Profile visibility</label>
+                <span className="desc">
+                  Manage who can see your activity. things you fancy. your
+                  followers, people you follow or in anyone's search results.
+                </span>
+                <div>
+                  <input
+                    type="radio"
+                    name="visibility"
+                    value="Everyone"
+                    checked={this.state.visibility === 'Everyone'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  Everyone
+                  <input
+                    type="radio"
+                    name="visibility"
+                    value="Private"
+                    checked={this.state.visibility === 'Private'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  Private
+                </div>
+              </div>
+              <br />
+              <div className="input-layout">
+                <label>Messages</label>
+                <span className="desc">
+                  Control who can send your messages.
+                </span>
+                <div>
+                  <input
+                    type="radio"
+                    name="message"
+                    value="Everyone"
+                    checked={this.state.message === 'Everyone'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  Everyone
+                  <input
+                    type="radio"
+                    name="message"
+                    value="People you follow"
+                    checked={this.state.message === 'People you follow'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  people you follow
+                  <input
+                    type="radio"
+                    name="message"
+                    value="No one"
+                    checked={this.state.message === 'No one'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  No one
+                </div>
+              </div>
+              <br />
+
+              <div className="input-layout">
+                <label>Recently viewed</label>
+                <span className="desc">Manage your fancy browsing history</span>
+                <div>
+                  <Button clicked={this.deleteHandler}>Delete all items</Button>
+                </div>
+              </div>
             </div>
           </div>
+
+          <div className="desc-box">
+            <div className="desc-topic">
+              <div>Content</div>
+            </div>
+            <div>
+              <div className="input-layout">
+                <label>Category lists</label>
+                <span className="desc">
+                  Automatically and Fancy'd items to the Category list
+                </span>
+                <div>
+                  <input
+                    type="radio"
+                    name="category"
+                    value="Enable"
+                    checked={this.state.category === 'Enable'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  Enable
+                  <input
+                    type="radio"
+                    name="category"
+                    value="Disable"
+                    checked={this.state.category === 'Disable'}
+                    onChange={this.inputChangedHandler}
+                  />{' '}
+                  Disable
+                </div>
+              </div>
+            </div>
+          </div>
+
           <Button>Save preference</Button>
         </form>
       </div>

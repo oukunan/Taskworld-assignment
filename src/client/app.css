@@ -1,4 +1,7 @@
-body {
+html,
+body,
+div {
+  font-family: 'Roboto', sans-serif;
   margin: 0;
 }
 .navbar {
@@ -16,20 +19,74 @@ body {
 .container-layout {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: center;
 }
 
 .sub-layout {
+  margin: 20px 20px 0 0;
+}
+
+.sub-layout .menu ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
   border: 1px solid black;
-  margin: 20px;
-  height: 500px;
+}
+
+.sub-layout .menu ul li {
   padding: 10px;
 }
 
-.menu-layout {
-  width: 30%;
+.sub-layout .menu ul li:hover {
+  background-color: #e2e2e2;
 }
-.child-layout {
+.sub-layout .menu ul li a {
+  text-decoration: none;
+  font-size: 14px;
+}
+.sub-layout .menu ul li a:visited {
+  color: black;
+}
+
+.preference {
+  padding: 10px;
+  border: 1px solid black;
+}
+.preference h3 {
+  margin: 0px;
+}
+
+.child {
   width: 60%;
 }
+
+.input-layout {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.desc {
+  font-size: 12px;
+  color: grey;
+  margin: 5px 0 5px 0;
+}
+.desc-box {
+  display: flex;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.desc-topic {
+  margin-right: 50px;
+  width: 120px;
+}
+
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+select {
+  width: 100%;
+}
+

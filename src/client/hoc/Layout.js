@@ -6,16 +6,15 @@ import { AuthConsumer } from '../context/AuthContext';
 class Layout extends Component {
   render() {
     return (
-      <div>
+      <div className="layout">
         <Navbar />
-
         <div className="container-layout">
           {this.props.isAuth ? (
-            <div className="sub-layout menu-layout">
+            <div className="sub-layout">
               <Menu />
             </div>
           ) : null}
-          <div className="sub-layout child-layout">{this.props.children}</div>
+          <div className="sub-layout child">{this.props.children}</div>
         </div>
       </div>
     );
