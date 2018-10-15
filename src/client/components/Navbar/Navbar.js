@@ -7,9 +7,23 @@ const navbar = props => (
     <ul>
       <AuthConsumer>
         {({ isAuth, logout }) => (
-          <div>
-            <NavbarItem link="/">HOME</NavbarItem>
-            {isAuth ? <button onClick={logout} >You Logout?</button> : null}
+          <div className="navbar-menu">
+            {isAuth ? (
+              <input type="text" placeholder="Search Fancy" id="search" />
+            ) : null}
+            <div className="logo">
+              <NavbarItem link="/">FANCY</NavbarItem>
+            </div>
+            {isAuth ? (
+              <div className="dropdown">
+                <button className="dropbtn">
+                  You <i id="arrow" className="down" />
+                </button>
+                <div className="dropdown-content">
+                  <div onClick={logout}>Logout?</div>
+                </div>
+              </div>
+            ) : null}
           </div>
         )}
       </AuthConsumer>
