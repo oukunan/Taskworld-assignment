@@ -8,13 +8,13 @@ const menu = props => {
       <ul>
         <MenuItem link="/profile" title="Edit profile" />
         <MenuItem link="/preference" title="Preference" />
-        <MenuItem link="/" title="Password" />
-        <MenuItem link="/" title="Notification" />
-        <MenuItem link="/" title="Connected Account" />
-        <MenuItem link="/" title="Orders" />
-        <MenuItem link="/" title="Payment" />
-        <MenuItem link="/" title="Shipping" />
-        <MenuItem link="/" title="Credits & Referals" />
+        <MenuItem link="/password" title="Password" />
+        <MenuItem link="/notification" title="Notification" />
+        <MenuItem link="/connected" title="Connected Account" />
+        <MenuItem link="/order" title="Orders" />
+        <MenuItem link="/payment" title="Payment" />
+        <MenuItem link="/shipping" title="Shipping" />
+        <MenuItem link="/credits" title="Credits & Referals" />
       </ul>
     </div>
   );
