@@ -9,7 +9,8 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently 'npm run server' 'npm run client'",
     "test": "mocha src/server/**/*.test.js",
-    "test-watch": "nodemon --exec \"npm test\""
+    "test-watch": "nodemon --exec \"npm test\"",
+    "test-client": "jest --watch"
   },
   "license": "MIT",
   "dependencies": {
@@ -30,12 +31,15 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
     "babel-loader": "^8.0.4",
     "chai": "^4.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "css-loader": "^1.0.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
@@ -44,6 +48,7 @@
     "expect": "^23.6.0",
     "file-loader": "^2.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
     "request": "^2.88.0",
@@ -53,5 +58,8 @@
     "webpack": "^4.20.2",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   }
 }
