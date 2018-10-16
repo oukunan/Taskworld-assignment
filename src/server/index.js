@@ -30,6 +30,7 @@ app.use(
 );
 
 const mongoose = require('mongoose');
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/taskworld');
 
@@ -104,7 +105,7 @@ app.get('/preference/:id', (req, res) => {
 });
 
 app.post('/preference', (req, res) => {
-  Preference.update(
+  Preference.updateOne(
     req.body.user,
     req.body,
     { upsert: true },
@@ -118,7 +119,7 @@ app.post('/preference', (req, res) => {
 app.delete('/preference/:id', (req, res) => {
   const id = req.params.id;
 
-  Preference.findOneAndRemove({
+  Preference.findOneAndDelete({
     uid: id
   })
     .then(item => {
