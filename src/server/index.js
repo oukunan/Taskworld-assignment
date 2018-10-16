@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cookeParser = require('cookie-parser');
+
 const session = require('express-session');
 const cors = require('cors');
 
@@ -8,9 +10,17 @@ const { Preference } = require('./models/Preference');
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    credentials: true
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookeParser());
+
 app.use(
   session({
     secret: 'keyboard cat',
@@ -23,9 +33,9 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/taskworld');
 
-app.get('/user', (request, response) => {
+app.get('/user', (req, res) => {
   User.find().then(user => {
-    response.json({ user });
+    res.json({ user });
   });
 });
 app.post('/signup', (req, res) => {
@@ -60,18 +70,21 @@ app.post('/login', (req, res) => {
           .status(401)
           .json({ message: 'Authentication failed. Wrong password.' });
       } else {
-        let sess = req.session;
-        sess.email = user.email;
-        sess._id = user._id;
+        req.session.email = user.email;
+        req.session._id = user._id;
         res.status(200).json({ email: user.email, id: user._id });
       }
     }
   });
 });
 
+app.post('/logout', (req, res) => {
+  req.session.destroy();
+});
+
 app.get('/session', (req, res) => {
   let sess = req.session;
-  res.status(200).json({ email: sess.email, id: sess._id });
+  res.status(200).send({ email: sess.email, id: sess._id });
 });
 
 app.get('/preference/:id', (req, res) => {
@@ -83,7 +96,7 @@ app.get('/preference/:id', (req, res) => {
       if (!item) {
         return res.status(404).send();
       }
-      res.send({ item });
+      res.status(200).send({ item });
     })
     .catch(e => {
       res.status(400).send();
@@ -91,22 +104,34 @@ app.get('/preference/:id', (req, res) => {
 });
 
 app.post('/preference', (req, res) => {
-  Preference.update(req.body.user, req.body, { upsert: true }, (err, user) => {
-    if (err) throw err;
-  });
+  Preference.update(
+    req.body.user,
+    req.body,
+    { upsert: true },
+    (err, records) => {
+      if (err) throw err;
+      res.status(200).send({ records });
+    }
+  );
 });
 
-app.delete('/preference', (req, res) => {
-  const id = req.body.uid;
+app.delete('/preference/:id', (req, res) => {
+  const id = req.params.id;
 
   Preference.findOneAndRemove({
     uid: id
-  }).then(item => {
-    if (!item) {
-      return res.status(404).send();
-    }
-    res.send({ item });
-  });
+  })
+    .then(item => {
+      if (!item) {
+        return res.status(404).send();
+      }
+      res.status(200).send({ item });
+    })
+    .catch(e => {
+      res.status(400).send();
+    });
 });
 
 app.listen(8080, () => console.log('Listening on port 8080!'));
+
+module.exports = { app };
