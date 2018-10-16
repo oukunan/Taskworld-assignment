@@ -1,6 +1,7 @@
 import React from 'react';
 
 import NavbarItem from './NavbarItem/NavbarItem';
+import NavbarSection from './NavbarSection/NavbarSection';
 import { AuthConsumer } from '../../context/AuthContext';
 const navbar = props => (
   <div className="navbar">
@@ -9,20 +10,27 @@ const navbar = props => (
         {({ isAuth, logout }) => (
           <div className="navbar-menu">
             {isAuth ? (
-              <input type="text" placeholder="Search Fancy" id="search" />
+              <NavbarSection>
+                <input type="text" placeholder="Search Fancy" id="search" />
+              </NavbarSection>
             ) : null}
-            <div className="logo">
-              <NavbarItem link="/">FANCY</NavbarItem>
-            </div>
-            {isAuth ? (
-              <div className="dropdown">
-                <button className="dropbtn">
-                  You <i id="arrow" className="down" />
-                </button>
-                <div className="dropdown-content">
-                  <div onClick={logout}>Logout?</div>
-                </div>
+            <NavbarSection>
+              <div className="logo">
+                FANCY
               </div>
+            </NavbarSection>
+
+            {isAuth ? (
+              <NavbarSection>
+                <div className="dropdown">
+                  <button className="dropbtn">
+                    You <i id="arrow" className="down" />
+                  </button>
+                  <div className="dropdown-content">
+                    <div onClick={logout}>Logout?</div>
+                  </div>
+                </div>
+              </NavbarSection>
             ) : null}
           </div>
         )}
