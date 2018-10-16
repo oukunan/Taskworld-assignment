@@ -2,7 +2,15 @@ import React, { Component } from 'react';
 import axios from '../../axios-order';
 
 import { AuthConsumer } from '../../context/AuthContext';
+
+import Header from '../../components/UI/Header/Header';
+import Label from '../../components/UI/Label/Label';
 import Button from '../../components/UI/Button/Button';
+import DescBox from '../../components/DescBox/DescBox';
+import DescTopic from '../../components/DescTopic/DescTopic';
+import Caption from '../../components/Caption/Caption';
+import InputLayout from '../../components/InputLayout/InputLayout';
+import Right from '../../components/Right/Right';
 
 class Preference extends Component {
   state = {
@@ -79,20 +87,18 @@ class Preference extends Component {
 
   render() {
     return (
-      <div className="preference">
+      <Right>
         <form onSubmit={this.savePreferenceHandler}>
-          <h3>Edit preference</h3>
+          <Header name="Edit preference" />
 
-          <div className="desc-box">
-            <div className="desc-topic">
-              <div>Localization</div>
-            </div>
+          <DescBox>
+            <DescTopic title="Localization" />
             <div>
-              <div className="input-layout">
-                <label>Language</label>
-                <span className="desc">
+              <InputLayout>
+                <Label label="Language" />
+                <Caption>
                   Interesd in helping translate Fancy? Let us know
-                </span>
+                </Caption>
                 <div>
                   <select
                     onChange={this.inputChangedHandler}
@@ -103,10 +109,10 @@ class Preference extends Component {
                     <option value="Thai">Thai</option>
                   </select>
                 </div>
-              </div>
+              </InputLayout>
 
               <div className="input-layout">
-                <label>Time zone</label>
+                <Label label="Time zone" />
                 <div>
                   <select
                     onChange={this.inputChangedHandler}
@@ -120,7 +126,7 @@ class Preference extends Component {
               </div>
 
               <div className="input-layout">
-                <label>Currency</label>
+                <Label label="Currency" />
                 <div>
                   <select
                     onChange={this.inputChangedHandler}
@@ -133,19 +139,18 @@ class Preference extends Component {
                 </div>
               </div>
             </div>
-          </div>
+          </DescBox>
 
-          <div className="desc-box">
-            <div className="desc-topic">
-              <div>Privacy</div>
-            </div>
+          <DescBox>
+            <DescTopic title="Privacy" />
             <div>
-              <div className="input-layout">
+              <InputLayout>
                 <label>Profile visibility</label>
-                <span className="desc">
+                <Caption>
                   Manage who can see your activity. things you fancy. your
                   followers, people you follow or in anyone's search results.
-                </span>
+                </Caption>
+
                 <div>
                   <input
                     type="radio"
@@ -164,13 +169,12 @@ class Preference extends Component {
                   />{' '}
                   Private
                 </div>
-              </div>
-              <br />
-              <div className="input-layout">
-                <label>Messages</label>
-                <span className="desc">
-                  Control who can send your messages.
-                </span>
+              </InputLayout>
+
+              <InputLayout>
+                <Label label="Message" />
+                <Caption>Control who can send your messages.</Caption>
+
                 <div>
                   <input
                     type="radio"
@@ -197,29 +201,28 @@ class Preference extends Component {
                   />{' '}
                   No one
                 </div>
-              </div>
-              <br />
+              </InputLayout>
 
-              <div className="input-layout">
-                <label>Recently viewed</label>
-                <span className="desc">Manage your fancy browsing history</span>
+              <InputLayout>
+                <Label label="Recently viewed" />
+                <Caption>Manage your fancy browsing history</Caption>
                 <div>
                   <Button clicked={this.deleteHandler}>Delete all items</Button>
                 </div>
-              </div>
+              </InputLayout>
             </div>
-          </div>
+          </DescBox>
 
-          <div className="desc-box">
-            <div className="desc-topic">
-              <div>Content</div>
-            </div>
+          <DescBox>
+            <DescTopic title="Content" />
             <div>
-              <div className="input-layout">
-                <label>Category lists</label>
-                <span className="desc">
+              <InputLayout>
+                <Label label="Category lists" />
+
+                <Caption>
                   Automatically and Fancy'd items to the Category list
-                </span>
+                </Caption>
+
                 <div>
                   <input
                     type="radio"
@@ -238,13 +241,12 @@ class Preference extends Component {
                   />{' '}
                   Disable
                 </div>
-              </div>
+              </InputLayout>
             </div>
-          </div>
-
+          </DescBox>
           <Button>Save preference</Button>
         </form>
-      </div>
+      </Right>
     );
   }
 }

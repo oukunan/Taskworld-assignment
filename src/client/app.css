@@ -56,8 +56,7 @@ body {
   margin-top: 15px;
 }
 
-.preference,
-.signup {
+.left {
   padding: 15px 30px;
   background-color: white;
   border-radius: 5px;
@@ -84,7 +83,7 @@ body {
   font-size: 14px;
 }
 
-.preference h3 {
+.left h3 {
   margin: 0px;
 }
 

@@ -3,6 +3,8 @@ import axios from '../../axios-order';
 
 import Button from '../../components/UI/Button/Button';
 import { AuthConsumer } from '../../context/AuthContext';
+import Right from '../../components/Right/Right';
+import Header from '../../components/UI/Header/Header';
 
 class Signup extends Component {
   state = {
@@ -61,8 +63,8 @@ class Signup extends Component {
   render() {
     const { isLogin } = this.state;
     return (
-      <div className="signup">
-        <h3>{isLogin ? 'Login' : 'Sign up'}</h3>
+      <Right>
+        <Header name={isLogin ? 'Login' : 'Sign up'} />
         <form onSubmit={this.submitHandler}>
           <div className="input-signup">
             <input
@@ -87,7 +89,7 @@ class Signup extends Component {
         <div className="toggleLogin" onClick={this.authToggle}>
           Change to {isLogin ? 'Sing up' : 'Login'}.
         </div>
-      </div>
+      </Right>
     );
   }
 }
