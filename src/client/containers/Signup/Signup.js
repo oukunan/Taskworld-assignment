@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../axios-order';
 
 import Button from '../../components/UI/Button/Button';
 import { AuthConsumer } from '../../context/AuthContext';
@@ -11,21 +11,30 @@ class Signup extends Component {
     isLogin: false
   };
 
+  componentWillMount() {
+    axios.get('/session').then(res => {
+      if (res.data.email) {
+        this.props.login(res.data._id);
+        this.props.history.push('/preference');
+      }
+    });
+  }
+
   submitHandler = e => {
     e.preventDefault();
     if (this.state.isLogin) {
       axios
-        .post('http://localhost:8080/login', this.state)
+        .post('/login', this.state)
         .then(res => {
           this.props.login(res.data.id);
           this.props.history.push('/preference');
         })
         .catch(err => {
-          console.log(err.response);
+          console.log(err);
         });
     } else {
       axios
-        .post('http://localhost:8080/signup', this.state)
+        .post('signup', this.state)
         .then(res => {
           this.setState({ isLogin: true });
         })

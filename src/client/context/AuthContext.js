@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import axios from '../axios-order';
 const AuthContext = React.createContext();
 
 class AuthProvider extends Component {
@@ -14,6 +14,10 @@ class AuthProvider extends Component {
 
   logout = () => {
     this.setState({ isAuth: false, uid: '' });
+
+    axios.post('/logout').then(res => {
+      console.log(res);
+    });
   };
 
   render() {

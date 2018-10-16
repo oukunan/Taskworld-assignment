@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../axios-order';
 
 import { AuthConsumer } from '../../context/AuthContext';
 import Button from '../../components/UI/Button/Button';
@@ -16,7 +16,7 @@ class Preference extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://localhost:8080/preference/${this.props.uid}`)
+      .get(`/preference/${this.props.uid}`)
       .then(res => {
         const {
           language,
@@ -51,7 +51,7 @@ class Preference extends Component {
   savePreferenceHandler = e => {
     e.preventDefault();
     axios
-      .post('http://localhost:8080/preference', {
+      .post('/preference', {
         ...this.state,
         user: {
           uid: this.props.uid
@@ -68,7 +68,7 @@ class Preference extends Component {
   deleteHandler = e => {
     e.preventDefault();
     axios
-      .delete(`http://localhost:8080/preference/${this.props.uid}`)
+      .delete(`preference/${this.props.uid}`)
       .then(res => {
         console.log(res.data);
       })
