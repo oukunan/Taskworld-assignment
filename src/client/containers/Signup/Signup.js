@@ -63,33 +63,33 @@ class Signup extends Component {
   render() {
     const { isLogin } = this.state;
     return (
-      <Right>
-        <Header name={isLogin ? 'Login' : 'Sign up'} />
-        <form onSubmit={this.submitHandler}>
-          <div className="input-signup">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={this.state.email}
-              onChange={this.handleInput}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleInput}
-            />
+        <Right>
+          <Header name={isLogin ? 'Login' : 'Sign up'} />
+          <form onSubmit={this.submitHandler}>
+            <div className="input-signup">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                value={this.state.email}
+                onChange={this.handleInput}
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleInput}
+              />
+            </div>
+
+            <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
+          </form>
+
+          <div className="toggleLogin" onClick={this.authToggle}>
+            Change to {isLogin ? 'Sing up' : 'Login'}.
           </div>
-
-          <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
-        </form>
-
-        <div className="toggleLogin" onClick={this.authToggle}>
-          Change to {isLogin ? 'Sing up' : 'Login'}.
-        </div>
-      </Right>
+        </Right>
     );
   }
 }

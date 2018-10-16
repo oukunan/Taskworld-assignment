@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import SubLayout from '../components/SubLayout/SubLayout';
+import ContainerLayout from '../components/ContainerLayout/ContainerLayout';
 import Navbar from '../components/Navbar/Navbar';
-import Menu from '../components/Menu/Menu';
 import { AuthConsumer } from '../context/AuthContext';
 
 class Layout extends Component {
@@ -10,14 +9,9 @@ class Layout extends Component {
     return (
       <div className="layout">
         <Navbar isAuth={this.props.isAuth} logout={this.props.logout} />
-        <div className="container-layout">
-          {this.props.isAuth ? (
-            <SubLayout child="left-child">
-              <Menu />
-            </SubLayout>
-          ) : null}
-          <SubLayout child="right-child">{this.props.children}</SubLayout>
-        </div>
+        <ContainerLayout isAuth={this.props.isAuth}>
+          {this.props.children}
+        </ContainerLayout>
       </div>
     );
   }
