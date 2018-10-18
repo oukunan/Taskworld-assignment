@@ -5,6 +5,7 @@ const cookeParser = require('cookie-parser');
 const session = require('express-session');
 const cors = require('cors');
 
+const { mongoose } = require('./db/mongoose');
 const { User } = require('./models/User');
 const { Preference } = require('./models/Preference');
 
@@ -28,11 +29,6 @@ app.use(
     saveUninitialized: true
   })
 );
-
-const mongoose = require('mongoose');
-
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/taskworld');
 
 app.get('/user', (req, res) => {
   User.find().then(user => {
