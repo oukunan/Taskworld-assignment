@@ -1,57 +1,23 @@
 import React, { Fragment } from 'react';
-
-import DescBox from '../../components/DescBox/DescBox';
-import DescTopic from '../../components/DescTopic/DescTopic';
-import InputLayout from '../../components/InputLayout/InputLayout';
-import Label from '../../components/UI/Label/Label';
-import Caption from '../../components/Caption/Caption';
-import Button from '../../components/UI/Button/Button';
+import Input from '../../components/UI/Input/Input';
 
 const formBuilder = props => {
   let input = null;
   input = props.inputs.map(item => (
-    <InputLayout key={item.label}>
-      <Label label={item.label} />
-      <Caption caption={item.caption} />
-
+    <div className="input-layout" key={item.label}>
+      <label>{item.label}</label>
+      <div className="desc">{item.caption}</div>
       <div>
-        {item.inputType === 'select' ? (
-          <select value={item.value} name={item.name} onChange={props.onChange}>
-            {item.options.map(option => {
-              return (
-                <option key={option.value} value={option.value}>
-                  {option.display}
-                </option>
-              );
-            })}
-          </select>
-        ) : item.inputType === 'radio' ? (
-          item.radios.map(radio => {
-            return (
-              <Fragment key={radio.value}>
-                <input
-                  type="radio"
-                  name={radio.name}
-                  checked={radio.checked}
-                  value={radio.value}
-                  onChange={props.onChange}
-                />
-                {radio.value}
-              </Fragment>
-            );
-          })
-        ) : (
-          <Button clicked={props.deleteHandler}>{item.title}</Button>
-        )}
+        <Input {...item} onChange={props.onChange} onDelete={props.onDelete} />
       </div>
-    </InputLayout>
+    </div>
   ));
 
   return (
-    <DescBox>
-      <DescTopic title={props.topic} />
+    <div className="desc-box">
+      <div className="desc-topic">{props.topic}</div>
       <div>{input}</div>
-    </DescBox>
+    </div>
   );
 };
 

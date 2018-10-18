@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import axios from '../../axios-order';
 
+import { preferenceInputs } from '../../data/data';
+import axios from '../../axios-preference';
 import { AuthConsumer } from '../../context/AuthContext';
 import FormBuilder from '../../containers/FormBuilder/FormBuilder';
 import Header from '../../components/UI/Header/Header';
@@ -81,149 +82,23 @@ class Preference extends Component {
   };
 
   render() {
-    const data = {
-      topic: 'Localization',
-      inputs: [
-        {
-          inputType: 'select',
-          caption: 'Interested in helping translate Fancy? Let us know',
-          label: 'Language',
-          name: 'language',
-          value: this.state.language,
-          options: [
-            {
-              value: 'English',
-              display: 'English'
-            },
-            {
-              value: 'Thai',
-              display: 'THB'
-            }
-          ]
-        },
-        {
-          inputType: 'select',
-          caption: '',
-          label: 'Time zone',
-          name: 'timezone',
-          value: this.state.timezone,
-          options: [
-            {
-              value: '(+00:00)UTC',
-              display: '(+00:00)UTC'
-            },
-            {
-              value: '(+01:00)UTC',
-              display: '(+01:00)UTC'
-            }
-          ]
-        },
-        {
-          inputType: 'select',
-          caption: '',
-          label: 'Currency',
-          name: 'currency',
-          value: this.state.currency,
-          options: [
-            {
-              value: 'USD',
-              display: 'USD'
-            },
-            {
-              value: 'THB',
-              display: 'THB'
-            }
-          ]
-        }
-      ]
-    };
+    const arrayData = preferenceInputs(this.state);
 
-    const data2 = {
-      topic: 'Privacy',
-      inputs: [
-        {
-          inputType: 'radio',
-          label: 'Profile Visibility',
-          caption:
-            "Manage who can see your activity. things you fancy. your followers, people you follow or in anyone's search results.",
-          radios: [
-            {
-              name: 'visibility',
-              value: 'Everyone',
-              checked: this.state.visibility === 'Everyone'
-            },
-            {
-              name: 'visibility',
-              value: 'Private',
-              checked: this.state.visibility === 'Private'
-            }
-          ]
-        },
-        {
-          inputType: 'radio',
-          label: 'Message',
-          caption: 'Control who can send your messages.',
-          radios: [
-            {
-              name: 'message',
-              value: 'Everyone',
-              checked: this.state.message === 'Everyone'
-            },
-            {
-              name: 'message',
-              value: 'People you follow',
-              checked: this.state.message === 'People you follow'
-            },
-            {
-              name: 'message',
-              value: 'No one',
-              checked: this.state.message === 'No one'
-            }
-          ]
-        },
-        {
-          inputType: 'button',
-          label: 'Recently viewed',
-          caption: 'Manage your fancy browsing history',
-          title: 'Delete all items'
-        }
-      ]
-    };
+    let formBuilds = null;
+    formBuilds = arrayData.map((data, i) => (
+      <FormBuilder
+        key={i}
+        {...data.data}
+        onChange={this.inputChangedHandler}
+        onDelete={this.deleteHandler}
+      />
+    ));
 
-    const data3 = {
-      topic: 'Content',
-      inputs: [
-        {
-          inputType: 'radio',
-          label: 'Category lists',
-          caption: "Automatically and Fancy'd items to the Category list",
-          radios: [
-            {
-              name: 'category',
-              value: 'Enable',
-              checked: this.state.category === 'Enable'
-            },
-            {
-              name: 'category',
-              value: 'Disable',
-              checked: this.state.category === 'Disable'
-            }
-          ]
-        }
-      ]
-    };
     return (
       <Right>
         <form onSubmit={this.savePreferenceHandler}>
           <Header name="Edit preference" />
-          <FormBuilder {...data} onChange={this.inputChangedHandler} />
-          <FormBuilder
-            {...data2}
-            onChange={this.inputChangedHandler}
-            clicked={this.deleteHandler}
-          />
-          <FormBuilder {...data3} onChange={this.inputChangedHandler} />
-
+          {formBuilds}
           <Button>Save preference</Button>
         </form>
       </Right>
