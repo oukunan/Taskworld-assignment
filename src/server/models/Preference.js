@@ -1,12 +1,30 @@
 const mongoose = require('mongoose');
 
 const preferenceSchema = new mongoose.Schema({
-  language: String,
-  timezone: String,
-  currency: String,
-  visibility: String,
-  message: String,
-  category: String,
+  language: {
+    type: String,
+    required: true
+  },
+  timezone: {
+    type: String,
+    required: true
+  },
+  currency: {
+    type: String,
+    required: true
+  },
+  visibility: {
+    type: String,
+    required: true
+  },
+  message: {
+    type: String,
+    required: true
+  },
+  category: {
+    type: String,
+    required: true
+  },
   uid: String
 });
 
