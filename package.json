@@ -6,9 +6,9 @@
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
-    "server": "nodemon src/server/index.js",
+    "server": "NODE_ENV=development nodemon src/server/index.js",
     "dev": "concurrently 'npm run server' 'npm run client'",
-    "test": "mocha src/server/**/*.test.js",
+    "test": "NODE_ENV=test mocha src/server/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\"",
     "test-client": "jest"
   },
