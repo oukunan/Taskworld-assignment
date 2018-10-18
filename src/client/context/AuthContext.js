@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from '../axios-order';
+import axios from '../axios-preference';
 const AuthContext = React.createContext();
 
 class AuthProvider extends Component {

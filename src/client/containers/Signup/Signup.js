@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from '../../axios-order';
+import axios from '../../axios-preference';
 
 import Button from '../../components/UI/Button/Button';
 import { AuthConsumer } from '../../context/AuthContext';
@@ -13,10 +13,10 @@ class Signup extends Component {
     isLogin: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     axios.get('/session').then(res => {
       if (res.data.email) {
-        this.props.login(res.data._id);
+        this.props.login(res.data.id);
         this.props.history.push('/preference');
       }
     });
@@ -63,33 +63,33 @@ class Signup extends Component {
   render() {
     const { isLogin } = this.state;
     return (
-        <Right>
-          <Header name={isLogin ? 'Login' : 'Sign up'} />
-          <form onSubmit={this.submitHandler}>
-            <div className="input-signup">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email address"
-                value={this.state.email}
-                onChange={this.handleInput}
-              />
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleInput}
-              />
-            </div>
-
-            <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
-          </form>
-
-          <div className="toggleLogin" onClick={this.authToggle}>
-            Change to {isLogin ? 'Sing up' : 'Login'}.
+      <Right>
+        <Header name={isLogin ? 'Login' : 'Sign up'} />
+        <form onSubmit={this.submitHandler}>
+          <div className="input-signup">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              value={this.state.email}
+              onChange={this.handleInput}
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={this.state.password}
+              onChange={this.handleInput}
+            />
           </div>
-        </Right>
+
+          <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
+        </form>
+
+        <div className="toggleLogin" onClick={this.authToggle}>
+          Change to {isLogin ? 'Sing up' : 'Login'}.
+        </div>
+      </Right>
     );
   }
 }
