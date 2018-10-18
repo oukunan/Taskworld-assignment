@@ -13,7 +13,7 @@ const app = express();
 app.use(
   cors({
     origin: 'http://localhost:3000',
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'UPDATE', 'DELETE'],
     credentials: true
   })
 );
@@ -118,7 +118,6 @@ app.post('/preference', (req, res) => {
 
 app.delete('/preference/:id', (req, res) => {
   const id = req.params.id;
-
   Preference.findOneAndDelete({
     uid: id
   })
