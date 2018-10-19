@@ -68,6 +68,7 @@ body {
 }
 
 .input-signup input {
+  width: 100%;
   height: 30px;
   margin-top: 5px;
   border: 1px solid #dce3ef;
@@ -230,7 +231,7 @@ select {
 }
 
 .btn:disabled {
-  background-color: #DCDCDC	;
+  background-color: #dcdcdc;
   color: white;
 }
 
@@ -243,4 +244,28 @@ select {
   margin-top: 15px;
   font-size: 12px;
   cursor: pointer;
+}
+
+.modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  width: 50%;
+  border: 1px solid white;
+  border-radius: 5px;
+  padding: 40px;
+  left: 25%;
+  top: 30%;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+}
+
+.backdrop {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
