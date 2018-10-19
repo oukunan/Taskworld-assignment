@@ -121,6 +121,10 @@ label {
   font-size: 14px;
 }
 
+.radio-label {
+  font-size: 14px;
+}
+
 select {
   width: 100%;
   height: 30px;
@@ -192,23 +196,23 @@ select {
   font-weight: bold;
   letter-spacing: 3px;
 }
-
-#search {
+.navbar-menu input {
   border: 1px solid #dce3ef;
   height: 30px;
 }
 
-#search:focus {
+.navbar-menu input:focus {
   outline: none;
   box-shadow: 1px 1px #dce3ef;
 }
-#search,
-#search::placeholder {
+.navbar-menu input,
+.navbar-menu input::placeholder {
   text-indent: 5px;
   font-size: 14px;
 }
 
 .btn {
+  margin-top: 5px;
   border: 0px;
   padding: 10px 30px;
   border-radius: 5px;

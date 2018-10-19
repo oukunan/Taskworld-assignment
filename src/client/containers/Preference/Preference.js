@@ -7,6 +7,7 @@ import FormBuilder from '../../containers/FormBuilder/FormBuilder';
 import Header from '../../components/UI/Header/Header';
 import Button from '../../components/UI/Button/Button';
 import Right from '../../components/Right/Right';
+import Modal from '../../components/UI/Modal/Modal';
 
 class Preference extends Component {
   state = {
@@ -16,7 +17,9 @@ class Preference extends Component {
     visibility: 'Everyone',
     message: 'Everyone',
     category: 'Enable',
-    isDisable: false
+    isDisable: false,
+    isShow: '',
+    messageModal: ''
   };
 
   componentDidMount() {
@@ -76,10 +79,17 @@ class Preference extends Component {
         }
       })
       .then(res => {
-        this.setState({ isDisable: false });
+        this.setState({
+          isDisable: false,
+          isShow: true,
+          messageModal: 'Save preference successful.'
+        });
       })
       .catch(e => {
-        console.log(e);
+        this.setState({
+          isShow: true,
+          messageModal: 'Something went wrong.'
+        });
       });
   };
 
@@ -88,14 +98,26 @@ class Preference extends Component {
     axios
       .delete(`preference/${this.props.uid}`)
       .then(res => {
-        this.setState({ isDisable: true });
+        this.setState({
+          isDisable: true,
+          isShow: true,
+          messageModal: 'Delete successful.'
+        });
       })
       .catch(e => {
-        console.log(e);
+        this.setState({
+          isShow: true,
+          message: 'Something went wrong.'
+        });
       });
   };
 
+  modalClosed = () => {
+    this.setState({ isShow: false, messageModal: '' });
+  };
+
   render() {
+    const { isShow, messageModal } = this.state;
     const arrayData = preferenceInputs(this.state);
 
     let formBuilds = null;
@@ -111,6 +133,9 @@ class Preference extends Component {
 
     return (
       <Right>
+        <Modal show={isShow} modalClosed={this.modalClosed}>
+          {messageModal}
+        </Modal>
         <form onSubmit={this.savePreferenceHandler}>
           <Header name="Edit preference" />
           {formBuilds}

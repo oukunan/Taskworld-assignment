@@ -1,4 +1,5 @@
 import React from 'react';
+import Input from '../UI/Input/Input';
 
 import NavbarSection from './NavbarSection/NavbarSection';
 const navbar = props => (
@@ -7,7 +8,7 @@ const navbar = props => (
       <div className="navbar-menu">
         {props.isAuth ? (
           <NavbarSection>
-            <input type="text" placeholder="Search Fancy" id="search" />
+            <Input inputType="text" name="search" placeholder="Search Fancy" />
           </NavbarSection>
         ) : null}
         <NavbarSection>

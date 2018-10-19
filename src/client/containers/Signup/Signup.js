@@ -14,8 +14,8 @@ class Signup extends Component {
     email: '',
     password: '',
     isLogin: false,
-    isError: false,
-    errorMessage: ''
+    isShow: false,
+    messageModal: ''
   };
 
   componentDidMount() {
@@ -30,7 +30,7 @@ class Signup extends Component {
   submitHandler = e => {
     e.preventDefault();
 
-    const { email, password, isLogin, isError } = this.state;
+    const { email, password, isLogin } = this.state;
 
     if (isLogin) {
       axios
@@ -41,20 +41,24 @@ class Signup extends Component {
         })
         .catch(err => {
           this.setState({
-            isError: true,
-            errorMessage: err.response.data.message
+            isShow: true,
+            messageModal: err.response.data.message
           });
         });
     } else {
       axios
         .post('/signup', { email, password })
         .then(res => {
-          this.setState({ isLogin: true });
+          this.setState({
+            isLogin: true,
+            isShow: true,
+            messageModal: 'Sign up successful.'
+          });
         })
         .catch(err => {
           this.setState({
-            isError: true,
-            errorMessage: err.response.data.message
+            isShow: true,
+            messageModal: err.response.data.message
           });
         });
     }
@@ -75,11 +79,11 @@ class Signup extends Component {
   };
 
   modalClosed = () => {
-    this.setState({ isError: false, errorMessage: '' });
+    this.setState({ isShow: false, messageModal: '' });
   };
 
   render() {
-    const { isLogin, isError, errorMessage } = this.state;
+    const { isLogin, isShow, messageModal } = this.state;
 
     const arrayData = signupInput(this.state);
 
@@ -97,8 +101,8 @@ class Signup extends Component {
 
     return (
       <Right>
-        <Modal show={isError} modalClosed={this.modalClosed}>
-          {errorMessage}
+        <Modal show={isShow} modalClosed={this.modalClosed}>
+          {messageModal}
         </Modal>
         <Header name={isLogin ? 'Login' : 'Sign up'} />
         <form onSubmit={this.submitHandler}>
