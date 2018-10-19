@@ -34,7 +34,11 @@ const input = props => {
       });
       break;
     default:
-      inputElement = <Button clicked={props.onDelete}>{props.title}</Button>;
+      inputElement = (
+        <Button disabled={props.disabled} clicked={props.onDelete}>
+          {props.title}
+        </Button>
+      );
   }
 
   return <div>{inputElement}</div>;

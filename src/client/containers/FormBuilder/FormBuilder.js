@@ -8,7 +8,12 @@ const formBuilder = props => {
       <label>{item.label}</label>
       <div className="desc">{item.caption}</div>
       <div>
-        <Input {...item} onChange={props.onChange} onDelete={props.onDelete} />
+        <Input
+          {...item}
+          onChange={props.onChange}
+          onDelete={props.onDelete}
+          disabled={props.disabled}
+        />
       </div>
     </div>
   ));

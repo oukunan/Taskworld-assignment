@@ -15,7 +15,8 @@ class Preference extends Component {
     currency: 'USD',
     visibility: 'Everyone',
     message: 'Everyone',
-    category: 'Enable'
+    category: 'Enable',
+    isDisable: false
   };
 
   componentDidMount() {
@@ -40,7 +41,7 @@ class Preference extends Component {
         });
       })
       .catch(e => {
-        console.log(e.response);
+        this.setState({ isDisable: true });
       });
   }
 
@@ -54,15 +55,28 @@ class Preference extends Component {
 
   savePreferenceHandler = e => {
     e.preventDefault();
+    const {
+      language,
+      currency,
+      timezone,
+      visibility,
+      message,
+      category
+    } = this.state;
     axios
       .post('/preference', {
-        ...this.state,
+        language,
+        timezone,
+        currency,
+        visibility,
+        message,
+        category,
         user: {
           uid: this.props.uid
         }
       })
       .then(res => {
-        console.log(res.data);
+        this.setState({ isDisable: false });
       })
       .catch(e => {
         console.log(e);
@@ -74,7 +88,7 @@ class Preference extends Component {
     axios
       .delete(`preference/${this.props.uid}`)
       .then(res => {
-        console.log(res.data);
+        this.setState({ isDisable: true });
       })
       .catch(e => {
         console.log(e);
@@ -91,6 +105,7 @@ class Preference extends Component {
         {...data.data}
         onChange={this.inputChangedHandler}
         onDelete={this.deleteHandler}
+        disabled={this.state.isDisable}
       />
     ));
 

@@ -229,6 +229,11 @@ select {
   transform: scale(0.9);
 }
 
+.btn:disabled {
+  background-color: #DCDCDC	;
+  color: white;
+}
+
 .is-active {
   font-weight: bold;
   background-color: #eaecef;
