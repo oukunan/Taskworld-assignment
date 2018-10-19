@@ -28,7 +28,7 @@ const input = props => {
               value={radio.value}
               onChange={props.onChange}
             />
-            {radio.value}
+            <span className="radio-label">{radio.value}</span>
           </Fragment>
         );
       });
