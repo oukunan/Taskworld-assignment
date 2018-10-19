@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import axios from '../../axios-preference';
 
-import Button from '../../components/UI/Button/Button';
+import { signupInput } from '../../data/data';
 import { AuthConsumer } from '../../context/AuthContext';
 import Right from '../../components/Right/Right';
+import Input from '../../components/UI/Input/Input';
+import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
+import Modal from '../../components/UI/Modal/Modal';
 
 class Signup extends Component {
   state = {
     email: '',
     password: '',
-    isLogin: false
+    isLogin: false,
+    isError: false,
+    errorMessage: ''
   };
 
   componentDidMount() {
@@ -24,24 +29,33 @@ class Signup extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    if (this.state.isLogin) {
+
+    const { email, password, isLogin, isError } = this.state;
+
+    if (isLogin) {
       axios
-        .post('/login', this.state)
+        .post('/login', { email, password })
         .then(res => {
           this.props.login(res.data.id);
           this.props.history.push('/preference');
         })
         .catch(err => {
-          console.log(err);
+          this.setState({
+            isError: true,
+            errorMessage: err.response.data.message
+          });
         });
     } else {
       axios
-        .post('signup', this.state)
+        .post('/signup', { email, password })
         .then(res => {
           this.setState({ isLogin: true });
         })
         .catch(err => {
-          console.log(err.response);
+          this.setState({
+            isError: true,
+            errorMessage: err.response.data.message
+          });
         });
     }
   };
@@ -60,29 +74,35 @@ class Signup extends Component {
     }));
   };
 
+  modalClosed = () => {
+    this.setState({ isError: false, errorMessage: '' });
+  };
+
   render() {
-    const { isLogin } = this.state;
+    const { isLogin, isError, errorMessage } = this.state;
+
+    const arrayData = signupInput(this.state);
+
+    let input = arrayData.map(item => (
+      <Input
+        key={item.name}
+        inputType={item.inputType}
+        type={item.type}
+        name={item.name}
+        placeholder={item.placeholder}
+        value={item.value}
+        onChange={this.handleInput}
+      />
+    ));
+
     return (
       <Right>
+        <Modal show={isError} modalClosed={this.modalClosed}>
+          {errorMessage}
+        </Modal>
         <Header name={isLogin ? 'Login' : 'Sign up'} />
         <form onSubmit={this.submitHandler}>
-          <div className="input-signup">
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={this.state.email}
-              onChange={this.handleInput}
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              value={this.state.password}
-              onChange={this.handleInput}
-            />
-          </div>
-
+          <div className="input-signup">{input}</div>
           <Button>{isLogin ? 'Login' : 'Sign up'}</Button>
         </form>
 

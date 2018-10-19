@@ -50,7 +50,9 @@ app.post('/signup', (req, res) => {
           res.status(200).send(user.email + ' ' + user._id);
         })
         .catch(err => {
-          res.status(400).send('unable to save to database');
+          res
+            .status(400)
+            .json({ message: 'Please enter your email and password.' });
         });
     }
   });

@@ -33,11 +33,22 @@ const input = props => {
         );
       });
       break;
-    default:
+    case 'button':
       inputElement = (
         <Button disabled={props.disabled} clicked={props.onDelete}>
           {props.title}
         </Button>
+      );
+      break;
+    default:
+      inputElement = (
+        <input
+          type={props.type}
+          name={props.name}
+          placeholder={props.placeholder}
+          value={props.value}
+          onChange={props.onChange}
+        />
       );
   }
 

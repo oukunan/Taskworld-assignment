@@ -251,4 +251,21 @@ const preferenceInputs = ({
   }
 ];
 
-export { preferenceInputs };
+const signupInput = ({ email, password }) => [
+  {
+    inputType: 'email',
+    type: 'email',
+    name: 'email',
+    placeholder: 'Email address',
+    value: email
+  },
+  {
+    inputType: 'password',
+    type: 'password',
+    name: 'password',
+    placeholder: 'Password',
+    value: password
+  }
+];
+
+export { preferenceInputs, signupInput };
