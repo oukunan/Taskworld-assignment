@@ -72,6 +72,7 @@ body {
   height: 30px;
   margin-top: 5px;
   border: 1px solid #dce3ef;
+  border-radius: 5px;
 }
 .input-signup input:focus {
   outline: none;
@@ -109,6 +110,7 @@ body {
   display: flex;
   flex-direction: row;
   margin-top: 15px;
+  border-bottom: 1px solid #dce3ef;
 }
 
 .desc-topic {
@@ -272,4 +274,65 @@ select {
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media only screen and (max-width: 600px) {
+  .modal {
+    width: 80%;
+    left: 10%;
+    font-size: 12px;
+  }
+  .input-signup input {
+    width: 150px;
+  }
+  .container-layout {
+    flex-direction: column;
+  }
+  .left-child,
+  .right-child {
+    width: 100%;
+  }
+  .desc-box {
+    flex-direction: column;
+  }
+  .desc-topic {
+    margin-bottom: 10px;
+  }
+  .navbar-menu input {
+    display: none;
+  }
+  .dropbtn {
+    margin: 0px;
+    background: white;
+  }
+  .dropdown-content {
+    margin-right: 5px;
+  }
+
+  .sub-layout .menu ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .sub-layout .menu ul li {
+    width: 33.3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .sub-layout .menu ul li:last-child {
+    width: 33.4%;
+  }
+  .sub-layout .menu ul li a {
+    height: 27px;
+    width: 70px;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sub-layout .menu ul li:hover {
+    background: none;
+  }
 }
