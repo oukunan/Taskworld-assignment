@@ -1,9 +1,7 @@
 require('./config/config');
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookeParser = require('cookie-parser');
-
 const session = require('express-session');
 const cors = require('cors');
 
@@ -13,6 +11,9 @@ const { Preference } = require('./models/Preference');
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookeParser());
 app.use(
   cors({
     origin: 'http://localhost:3000',
@@ -20,10 +21,6 @@ app.use(
     credentials: true
   })
 );
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookeParser());
-
 app.use(
   session({
     secret: 'keyboard cat',
@@ -31,6 +28,7 @@ app.use(
     saveUninitialized: true
   })
 );
+
 
 app.get('/user', (req, res) => {
   User.find().then(user => {
@@ -47,7 +45,7 @@ app.post('/signup', (req, res) => {
       user
         .save()
         .then(item => {
-          res.status(200).send(user.email + ' ' + user._id);
+          res.status(200).send();
         })
         .catch(err => {
           res
@@ -89,9 +87,8 @@ app.get('/session', (req, res) => {
 });
 
 app.get('/preference/:id', (req, res) => {
-  const id = req.params.id;
   Preference.findOne({
-    uid: id
+    uid: req.params.id
   })
     .then(item => {
       if (!item) {
@@ -117,9 +114,8 @@ app.post('/preference', (req, res) => {
 });
 
 app.delete('/preference/:id', (req, res) => {
-  const id = req.params.id;
   Preference.findOneAndDelete({
-    uid: id
+    uid: req.params.id
   })
     .then(item => {
       if (!item) {
@@ -132,6 +128,6 @@ app.delete('/preference/:id', (req, res) => {
     });
 });
 
-app.listen(8080, () => console.log('Listening on port 8080!'));
+app.listen(8080, () => console.log('Listening on port 8080.'));
 
 module.exports = { app };
