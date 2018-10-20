@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import './app.css';
 import Layout from './hoc/Layout';
 import Preference from './containers/Preference/Preference';
 import Signup from './containers/Signup/Signup';
 import ProtectedRoute from './context/ProtectedRoute';
+
 
 const routeList = [
   { path: '/profile' },

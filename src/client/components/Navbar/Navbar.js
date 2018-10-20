@@ -2,11 +2,11 @@ import React from 'react';
 import Input from '../UI/Input/Input';
 
 import NavbarSection from './NavbarSection/NavbarSection';
-const navbar = props => (
+const navbar = ({ isAuth, logout }) => (
   <div className="navbar">
     <ul>
       <div className="navbar-menu">
-        {props.isAuth ? (
+        {isAuth ? (
           <NavbarSection>
             <Input inputType="text" name="search" placeholder="Search Fancy" />
           </NavbarSection>
@@ -15,14 +15,14 @@ const navbar = props => (
           <div className="logo">FANCY</div>
         </NavbarSection>
 
-        {props.isAuth ? (
+        {isAuth ? (
           <NavbarSection>
             <div className="dropdown">
               <button className="dropbtn">
                 You <i id="arrow" className="down" />
               </button>
               <div className="dropdown-content">
-                <div onClick={props.logout}>Logout?</div>
+                <div onClick={logout}>Logout?</div>
               </div>
             </div>
           </NavbarSection>

@@ -6,12 +6,11 @@ import { AuthConsumer } from '../context/AuthContext';
 
 class Layout extends Component {
   render() {
+    const { isAuth, logout, children } = this.props;
     return (
       <div className="layout">
-        <Navbar isAuth={this.props.isAuth} logout={this.props.logout} />
-        <ContainerLayout isAuth={this.props.isAuth}>
-          {this.props.children}
-        </ContainerLayout>
+        <Navbar isAuth={isAuth} logout={logout} />
+        <ContainerLayout isAuth={isAuth}>{children}</ContainerLayout>
       </div>
     );
   }

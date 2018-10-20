@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const menuItem = props => (
+const menuItem = ({ link, title }) => (
   <li>
-    <NavLink to={props.link} activeClassName="is-active">
-      {props.title}
+    <NavLink to={link} activeClassName="is-active">
+      {title}
     </NavLink>
   </li>
 );

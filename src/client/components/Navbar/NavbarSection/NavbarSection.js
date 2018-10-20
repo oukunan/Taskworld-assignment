@@ -1,7 +1,7 @@
 import React from 'react';
 
-const navbarSection = props => {
-  return <div>{props.children}</div>;
+const navbarSection = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default navbarSection;

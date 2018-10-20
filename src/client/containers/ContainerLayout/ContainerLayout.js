@@ -1,14 +1,14 @@
 import React from 'react';
 import SubLayout from '../SubLayout/SubLayout';
 import Menu from '../Menu/Menu';
-const containerLayout = props => (
+const containerLayout = ({ children, isAuth }) => (
   <div className="container-layout">
-    {props.isAuth ? (
+    {isAuth ? (
       <SubLayout child="left-child">
         <Menu />
       </SubLayout>
     ) : null}
-    <SubLayout child="right-child">{props.children}</SubLayout>
+    <SubLayout child="right-child">{children}</SubLayout>
   </div>
 );
 

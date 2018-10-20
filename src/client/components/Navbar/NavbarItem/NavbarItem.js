@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const navbarItem = props => (
+const navbarItem = ({ link, logout, children }) => (
   <li>
-    <NavLink to={props.link} onClick={props.logout}>
-      {props.children}
+    <NavLink to={link} onClick={logout}>
+      {children}
     </NavLink>
   </li>
 );

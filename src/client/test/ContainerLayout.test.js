@@ -2,7 +2,6 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import ContainerLayout from '../components/ContainerLayout/ContainerLayout';
 import SubLayout from '../components/SubLayout/SubLayout';
-import { wrap } from 'module';
 
 describe('<Layout />', () => {
   let wrapper;

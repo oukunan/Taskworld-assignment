@@ -4,9 +4,10 @@ import { preferenceInputs } from '../../data/data';
 import axios from '../../axios-preference';
 import { AuthConsumer } from '../../context/AuthContext';
 import FormBuilder from '../../containers/FormBuilder/FormBuilder';
+import Child from '../../components//Child/Child';
+
 import Header from '../../components/UI/Header/Header';
 import Button from '../../components/UI/Button/Button';
-import Right from '../../components/Right/Right';
 import Modal from '../../components/UI/Modal/Modal';
 
 class Preference extends Component {
@@ -132,7 +133,7 @@ class Preference extends Component {
     ));
 
     return (
-      <Right>
+      <Child position="right">
         <Modal show={isShow} modalClosed={this.modalClosed}>
           {messageModal}
         </Modal>
@@ -141,7 +142,7 @@ class Preference extends Component {
           {formBuilds}
           <Button>Save preference</Button>
         </form>
-      </Right>
+      </Child>
     );
   }
 }

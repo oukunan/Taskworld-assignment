@@ -1,13 +1,25 @@
 import React, { Fragment } from 'react';
 import Button from '../Button/Button';
-const input = props => {
+const input = ({
+  inputType,
+  value,
+  name,
+  onChange,
+  options,
+  radios,
+  disabled,
+  onDelete,
+  title,
+  type,
+  placeholder
+}) => {
   let inputElement = null;
 
-  switch (props.inputType) {
+  switch (inputType) {
     case 'select':
       inputElement = (
-        <select value={props.value} name={props.name} onChange={props.onChange}>
-          {props.options.map(option => {
+        <select value={value} name={name} onChange={onChange}>
+          {options.map(option => {
             return (
               <option key={option.value} value={option.value}>
                 {option.display}
@@ -18,7 +30,7 @@ const input = props => {
       );
       break;
     case 'radio':
-      inputElement = props.radios.map(radio => {
+      inputElement = radios.map(radio => {
         return (
           <Fragment key={radio.value}>
             <input
@@ -26,7 +38,7 @@ const input = props => {
               name={radio.name}
               checked={radio.checked}
               value={radio.value}
-              onChange={props.onChange}
+              onChange={onChange}
             />
             <span className="radio-label">{radio.value}</span>
           </Fragment>
@@ -35,19 +47,19 @@ const input = props => {
       break;
     case 'button':
       inputElement = (
-        <Button disabled={props.disabled} clicked={props.onDelete}>
-          {props.title}
+        <Button disabled={disabled} clicked={onDelete}>
+          {title}
         </Button>
       );
       break;
     default:
       inputElement = (
         <input
-          type={props.type}
-          name={props.name}
-          placeholder={props.placeholder}
-          value={props.value}
-          onChange={props.onChange}
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange}
         />
       );
   }

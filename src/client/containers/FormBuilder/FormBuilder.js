@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
 import Input from '../../components/UI/Input/Input';
 
-const formBuilder = props => {
+const formBuilder = ({ inputs, onChange, onDelete, disabled, topic }) => {
   let input = null;
-  input = props.inputs.map(item => (
+  input = inputs.map(item => (
     <div className="input-layout" key={item.label}>
       <label>{item.label}</label>
       <div className="desc">{item.caption}</div>
       <div>
         <Input
           {...item}
-          onChange={props.onChange}
-          onDelete={props.onDelete}
-          disabled={props.disabled}
+          onChange={onChange}
+          onDelete={onDelete}
+          disabled={disabled}
         />
       </div>
     </div>
@@ -20,7 +20,7 @@ const formBuilder = props => {
 
   return (
     <div className="desc-box">
-      <div className="desc-topic">{props.topic}</div>
+      <div className="desc-topic">{topic}</div>
       <div>{input}</div>
     </div>
   );
