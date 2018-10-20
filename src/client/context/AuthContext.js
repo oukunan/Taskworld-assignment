@@ -15,9 +15,10 @@ class AuthProvider extends Component {
   logout = () => {
     this.setState({ isAuth: false, uid: '' });
 
-    axios.post('/logout').then(res => {
-      console.log(res);
-    });
+    axios
+      .post('/logout')
+      .then(res => {})
+      .catch(e => {});
   };
 
   render() {
