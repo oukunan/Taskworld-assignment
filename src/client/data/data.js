@@ -91,8 +91,8 @@ const preferenceInputs = ({
               display: '(-01:00)UTC'
             },
             {
-              value: '(+00:00)UTC',
-              display: '(+00:00)UTC'
+              value: '(00:00)UTC',
+              display: '(00:00)UTC'
             },
             {
               value: '(+01:00)UTC',

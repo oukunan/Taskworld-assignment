@@ -1,6 +1,5 @@
 import React from 'react';
 
-import Child from '../Child/Child';
 import MenuItem from './MenuItem/MenuItem';
 
 const menuItemList = [
@@ -20,11 +19,9 @@ const menu = props => {
     <MenuItem key={item.link} link={item.link} title={item.title} />
   ));
   return (
-    <Child position="left">
-      <div className="menu">
-        <ul>{lists}</ul>
-      </div>
-    </Child>
+    <div className="menu">
+      <ul>{lists}</ul>
+    </div>
   );
 };
 

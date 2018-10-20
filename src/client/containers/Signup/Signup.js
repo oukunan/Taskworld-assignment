@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import axios from '../../axios-preference';
 
 import { signupInput } from '../../data/data';
 import { AuthConsumer } from '../../context/AuthContext';
-import Right from '../../components/Right/Right';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Header from '../../components/UI/Header/Header';
@@ -100,7 +99,7 @@ class Signup extends Component {
     ));
 
     return (
-      <Right>
+      <Fragment>
         <Modal show={isShow} modalClosed={this.modalClosed}>
           {messageModal}
         </Modal>
@@ -113,7 +112,7 @@ class Signup extends Component {
         <div className="toggleLogin" onClick={this.authToggle}>
           Change to {isLogin ? 'Sing up' : 'Login'}.
         </div>
-      </Right>
+      </Fragment>
     );
   }
 }
