@@ -1,6 +1,7 @@
 import React from 'react';
-import SubLayout from '../SubLayout/SubLayout';
-import Menu from '../Menu/Menu';
+import SubLayout from '../../components/SubLayout/SubLayout';
+import Menu from '../../components/Menu/Menu';
+
 const containerLayout = ({ children, isAuth }) => (
   <div className="container-layout">
     {isAuth ? (

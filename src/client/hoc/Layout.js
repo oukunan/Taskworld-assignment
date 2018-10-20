@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ContainerLayout from '../components/ContainerLayout/ContainerLayout';
+import ContainerLayout from '../containers/ContainerLayout/ContainerLayout';
 import Navbar from '../components/Navbar/Navbar';
 import { AuthConsumer } from '../context/AuthContext';
 

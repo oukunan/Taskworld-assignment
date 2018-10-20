@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ContainerLayout from '../components/ContainerLayout/ContainerLayout';
+import ContainerLayout from '../containers/ContainerLayout/ContainerLayout';
 import SubLayout from '../components/SubLayout/SubLayout';
 
 describe('<Layout />', () => {
